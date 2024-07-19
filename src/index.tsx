@@ -1,7 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
+import { QueryClient, QueryClientProvider } from "react-query";
 import App from "./App";
 import { createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
@@ -61,24 +62,33 @@ table {
 body {
   font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
-  color:black;
+  color:${(props) => props.theme.white.darker};
   line-height: 1.2;
+  background-color: black;
   
 }
 a {
   text-decoration:none;
   color:inherit;
 }
+::-webkit-scrollbar {
+display: none;
+}
 `;
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container as HTMLElement);
 
-ReactDOM.render(
+const client = new QueryClient();
+
+root.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
+      <QueryClientProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <App />
+        </ThemeProvider>
+      </QueryClientProvider>
     </RecoilRoot>
   </React.StrictMode>,
-  document.getElementById("root")
 );
