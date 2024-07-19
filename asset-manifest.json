@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/youflix/static/js/main.8ce7640d.js",
+    "index.html": "/youflix/index.html",
+    "main.8ce7640d.js.map": "/youflix/static/js/main.8ce7640d.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.8ce7640d.js"
+  ]
+}
